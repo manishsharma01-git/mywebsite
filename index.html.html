@@ -1,0 +1,403 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Annu My Love ❤️</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<!-- Typed.js -->
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+<style>
+/* BODY & BACKGROUND */
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  overflow-x: hidden;
+  background: linear-gradient(to bottom left, #ff0066 7%, #ff99ff 77%);
+  min-height:100vh;
+}
+
+/* POPUP STAGES */
+.popup {
+  width: 350px;
+  background: #ffb6d9;
+  border-radius: 20px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 100;
+}
+
+/* CHARACTER ANIMATION */
+.character {
+  width: 180px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  animation: float 2s infinite ease-in-out;
+}
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0); }
+}
+
+/* BUTTONS */
+.btn-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+.btn {
+  padding: 10px 20px;
+  border-radius: 12px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.2s;
+  position: relative;
+}
+.yes { background: #ff4f7a; color: white; }
+.no { background: #ddd; }
+
+/* FINAL ANIMATION */
+#finalContainer {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#finalContainer video { width: 200px; border-radius: 15px; margin-bottom: 15px; }
+#finalMsg { font-size: 18px; color: #ff4d6d; text-align: center; margin-bottom: 10px; animation: pop 1s ease; }
+@keyframes pop { 0%{transform:scale(0.5);opacity:0;}50%{transform:scale(1.2);opacity:1;}100%{transform:scale(1);opacity:1;} }
+
+/* CONTINUE BUTTON */
+#continueBtn {
+  padding: 10px 20px;
+  border-radius: 12px;
+  border: none;
+  background: #ff4f7a;
+  color: white;
+  cursor: pointer;
+}
+
+/* MAIN PAGE */
+#mainPage {
+  display: none;
+  padding: 20px;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(to bottom left, #ff0066 7%, #ff99ff 77%);
+  min-height: 100vh;
+}
+
+/* HEADER */
+.header-layer {
+  text-align: center;
+  padding-top: 35px;
+  padding-bottom: 10px;
+}
+.header-title {
+  font-family: "Great Vibes", cursive; /* custom header font */
+  font-size: 50px;
+  font-weight: 600;
+  color: #fff;
+  animation: glowHeading 1.8s infinite alternate;
+  text-align:center;
+}
+@keyframes glowHeading {
+  0% { text-shadow: 0 0 10px #ff4d94, 0 0 20px #ff80bf, 0 0 30px #ff99cc; }
+  50% { text-shadow: 0 0 20px #ff1a75, 0 0 30px #ff66aa, 0 0 40px #ff99cc; }
+  100% { text-shadow: 0 0 30px #ff0066, 0 0 40px #ff66aa, 0 0 50px #ff99cc; }
+}
+
+/* SLIDESHOW */
+.slideshow-layer {
+  width: 90%;
+  max-width: 520px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 25px;
+  background: rgba(255,255,255,0.28);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+.slideshow-container {
+  width: 100%;
+  height: 300px;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  background: #ffffff20;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 10px;
+  opacity: 0;
+  animation: fadeZoom 12s infinite;
+}
+.slide:nth-child(1) { animation-delay: 0s; }
+.slide:nth-child(2) { animation-delay: 4s; }
+.slide:nth-child(3) { animation-delay: 8s; }
+.slide:nth-child(4) { animation-delay: 12s; }
+.slide:nth-child(5) { animation-delay: 16s; }
+.slide:nth-child(6) { animation-delay: 20s; }
+.slide:nth-child(7) { animation-delay: 24s; }
+
+@keyframes fadeZoom {
+  0% { opacity: 0; transform: scale(1); }
+  10% { opacity: 1; transform: scale(1.02); }
+  30% { opacity: 1; transform: scale(1.07); }
+  40% { opacity: 0; transform: scale(1); }
+  100% { opacity: 0; }
+}
+
+/* MESSAGE BLOCK */
+.message-layer {
+  width: 90%;
+  max-width: 520px;
+  margin: 10px auto;
+  padding: 20px;
+  background: rgba(255,255,255,0.20);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  color: black;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  font-size: 18px;
+  line-height: 1.9;
+}
+
+/* MESSAGE TYPING FONT */
+.typed-text {
+    font-family: "Great Vibes", cursive;  /* change typing message font */
+    font-size: 22px;
+    font-weight: 500;
+    color: #171616;
+    letter-spacing: 1px;
+}
+
+/* MUSIC BLOCK */
+.music-layer {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  color: white;
+  font-size: 19px;
+}
+.pulse {
+  width: 15px;
+  height: 15px;
+  background: white;
+  border-radius: 50%;
+  margin: 8px auto;
+  animation: pulse 1.5s infinite;
+}
+
+/* FLOATING HEARTS */
+.heart {
+  position: fixed;
+  bottom: -10px;
+  color: red;
+  font-size: 25px;
+  animation: floatUp 5s linear infinite;
+}
+@keyframes floatUp {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-600px); opacity: 0; }
+}
+
+/* CONFETTI ANIMATION */
+@keyframes confettiFall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(600px) rotate(360deg); opacity: 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- FLOATING HEARTS -->
+<script>
+setInterval(() => {
+  let heart = document.createElement("div");
+  heart.innerHTML = "❤️";
+  heart.classList.add("heart");
+  heart.style.left = Math.random() * window.innerWidth + "px";
+  heart.style.fontSize = (20 + Math.random() * 20) + "px";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 5000);
+}, 500);
+</script>
+
+<!-- STAGES POPUP -->
+<div class="popup" id="popup">
+  <div id="stageContainer">
+    <video id="character" class="character" autoplay loop muted playsinline src="ani2.mp4"></video>
+    <h2 id="prompt">Anjali… will you be mine? ❤️</h2>
+    <div class="btn-row">
+      <button id="yesBtn" class="btn yes">Yes</button>
+      <button id="noBtn" class="btn no">No</button>
+    </div>
+  </div>
+
+  <div id="finalContainer">
+    <video id="finalAnim" autoplay loop muted playsinline src="ani4.mp4"></video>
+    <div id="finalMsg">I know you secretly love me ❤️</div>
+    <button id="continueBtn">Continue →</button>
+  </div>
+</div>
+
+<!-- MAIN PAGE -->
+<div id="mainPage">
+  <div class="header-layer">
+    <h1 class="header-title">Annu My Love ❤️</h1>
+  </div>
+
+  <div class="slideshow-layer">
+    <div class="slideshow-container">
+      <img src="her1.jpg" class="slide">
+      <img src="her2.jpg" class="slide">
+      <img src="her3.jpg" class="slide">
+      <img src="her4.jpg" class="slide">
+      <img src="her5.jpg" class="slide">
+      <img src="her6.jpg" class="slide">
+      <img src="her7.jpg" class="slide">
+
+    </div>
+  </div>
+
+  <div class="message-layer">
+    <span class="typed-text"></span>
+  </div>
+
+  <div class="music-layer">
+    ❤️ Our Song  
+    <div class="pulse"></div>
+    <audio id="mainMusic" controls>
+      <source src="mysong.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+</div>
+
+<script>
+let stage = 1;
+const prompt = document.getElementById("prompt");
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const stageContainer = document.getElementById("stageContainer");
+const finalContainer = document.getElementById("finalContainer");
+const continueBtn = document.getElementById("continueBtn");
+const character = document.getElementById("character");
+const mainPage = document.getElementById("mainPage");
+const mainMusic = document.getElementById("mainMusic");
+
+/*************** SHOW FINAL *****************/
+function showFinal(){
+  stageContainer.style.display = "none";
+  finalContainer.style.display = "flex";
+}
+
+/*************** YES CLICK *****************/
+yesBtn.onclick = () => {
+
+  if(stage === 1){
+    showFinal(); // Stage 1 YES → FINAL
+  }
+
+  else if(stage === 2){
+    stage = 3;
+    prompt.innerHTML = "Please maan jao baby… 😭";
+    character.src = "ani3.mp4";
+
+    yesBtn.innerHTML = "OK";
+    noBtn.innerHTML = "NOT OK";
+  }
+
+  else if(stage === 3){
+    showFinal(); // OK → Final
+  }
+};
+
+/*************** NO CLICK *****************/
+noBtn.onclick = () => {
+
+  if(stage === 1){
+    // Go to Stage 2
+    stage = 2;
+    prompt.innerHTML = "Are you sure? 😢";
+    character.src = "ani1.mp4";  // ✔ FIXED — STAGE 2 uses ani1
+  }
+
+  else if(stage === 2){
+    return; // NO RESPONSE ✔ FIXED
+  }
+
+  else if(stage === 3){
+    return; // NO RESPONSE ✔ FIXED
+  }
+};
+
+/*************** FLOATING NOT OK (stage 3 only) *****************/
+noBtn.onmouseover = () => {
+  if(stage === 3){
+    noBtn.style.position = "relative";
+    noBtn.style.left = (Math.random()*180-90)+"px";
+    noBtn.style.top = (Math.random()*60-30)+"px";
+  }
+};
+
+// Continue → show main page & autoplay music
+continueBtn.onclick = () => {
+  document.getElementById("popup").style.display = "none";
+  mainPage.style.display = "block";
+  mainMusic.play();
+
+  // Typed.js typing effect (one-flow, no erase)
+  var typed = new Typed(".typed-text", {
+    strings: [
+`💖 Annu De Naam Ik Pyara Ehsaas 💖
+
+Tenu Takeyan Bina Ni Dil Rajda, Annu… 😍
+
+Pata nai kado, kiven… par tussi meri zindagi da oh hissa ban gaye ho, jithe har khushi, har sukoon, har ehsaas sirf tuhade naal hi poora lagda ae. ✨
+
+Kayi vaar lagda ae ki lafzaan ch shayad kabhi samjha na paava ki tussi mere layi kinne khaas ho… 🥺 par jado tussi ek vari **muskuraaunde ho na**, lagda ae jaise duniya hi ruk ke keh rahi hove— “Bas eh hi ae… eh hi oh insaan ae jide naal sab perfect lagda.” 🌹
+
+Tussi ho taan har cheez hor chamkdi ae, hor sukoon wali, hor zindagi bhari… jaise har din tussi apni presence naal thoda hor khoobsurat bana dinde ho. 🌟
+
+Tuhadi gallan, tuhadi care, tuhadi soch, te tuhadi oh masoomi jidi koi second copy vi nahi — eh sab mil ke mainu har roz eh yaad dinda ae ki Rabb ne mere layi tuhade varga insaan banan ‘ch bohot pyaar laya hovega. 🙏
+
+Annu… tussi sirf meri life da part nahi, par oh insaan ho jina nu koi replace vi nahi kar sakda. Tussi mainu **complete karde ho**… te tuhade naal hi sab kuch sahi, sab kuch perfect, sab kuch apna lagaan ae. 💑
+
+Shukriya…
+sirf tuhada hovan layi,
+sirf ena pyaar den layi,
+te meri zindagi ch oh roshni ban ke aun layi jo main kade vi khona nahi chaunda. ❤️.`
+    ],
+    typeSpeed: 20,
+    backSpeed: 0,
+    backDelay: 999999,
+    smartBackspace: false,
+    loop: false
+  });
+};
+</script>
+
+</body>
+</html>
